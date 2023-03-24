@@ -23,7 +23,6 @@ class TrustWeb3Provider extends BaseProvider {
     this.idMapping = new IdMapping();
     this.callbacks = new Map();
     this.wrapResults = new Map();
-    this.isMetaMask = !!config.ethereum.isMetaMask;
 
     this.emitConnect(this.chainId);
   }
