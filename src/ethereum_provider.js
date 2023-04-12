@@ -45,7 +45,10 @@ class TrustWeb3Provider extends BaseProvider {
   }
 
   setConfig(config) {
-    this.setAddress(config.ethereum.address);
+
+    if (config.ethereum != undefined && config.ethereum.address != undefined) {
+      this.setAddress(config.ethereum.address);
+    }
 
     this.networkVersion = "" + config.ethereum.chainId;
     this.chainId = "0x" + (config.ethereum.chainId || 1).toString(16);
@@ -225,7 +228,7 @@ class TrustWeb3Provider extends BaseProvider {
   }
 
   emitChainChanged(chainId) {
-    this.emit("chainChanged", chainId);
+    this.emit("chainChanged", "0x" + chainId.toString(16));
     this.emit("networkChanged", chainId);
   }
 
@@ -302,7 +305,9 @@ class TrustWeb3Provider extends BaseProvider {
     let address;
     let data;
 
-    if (this.address === payload.params[0].toLowerCase()) {
+    console.log("tuanha", JSON.stringify(payload.params[0]))
+
+    if (this.address === payload.params[0].toString().toLowerCase()) {
       data = payload.params[1];
       address = payload.params[0];
     } else {
@@ -314,7 +319,7 @@ class TrustWeb3Provider extends BaseProvider {
 
     const { chainId } = message.domain || {};
 
-    if (!chainId || Number(chainId) !== Number(this.chainId)) {
+    if (version != SignTypedDataVersion.V1 || chainId != undefined) if (!chainId || Number(chainId) !== Number(this.chainId)) {
       throw new Error(
         "Provided chainId does not match the currently active chain"
       );

@@ -12,16 +12,16 @@ class BaseProvider extends EventEmitter {
   constructor(config) {
     super();
 
-    this.isTrust = true;
-    this.isPhantom = config.isSOL;
-    this.isMetaMask = config.isEVM;
+    this.isTrust = config.isTrust;
+    this.isPhantom = config.isPhantom;
+    this.isMetaMask = config.isMetaMask;
 
     this.isKrystal = true;
     this.isKrystalWallet = true;
 
     this.isDebug = !!config.isDebug;
 
-    console.log("tuanha", this.isTrust, this.isPhantom, this.isMetaMask, this.isDebug);
+    console.log("tuanha", " isTrust:", this.isTrust, " isPhantom:", this.isPhantom, " isMetaMask:", this.isMetaMask, this.isDebug);
   }
 
   /**
@@ -30,6 +30,7 @@ class BaseProvider extends EventEmitter {
   postMessage(handler, id, data) {
     let object = {
       id: id,
+      chainId: this.chainId,
       name: handler,
       object: data,
       network: this.providerNetwork,
