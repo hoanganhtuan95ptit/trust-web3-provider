@@ -16,10 +16,10 @@ class BaseProvider extends EventEmitter {
     this.isPhantom = config.isPhantom;
     this.isMetaMask = config.isMetaMask;
 
-    this.isKrystal = true;
-    this.isKrystalWallet = true;
+    this.isKrystal = config.isKrystal;
+    this.isKrystalWallet = config.isKrystal;
 
-    this.isDebug = !!config.isDebug;
+    this.isDebug = config.isDebug;
 
     console.log("tuanha", " isTrust:", this.isTrust, " isPhantom:", this.isPhantom, " isMetaMask:", this.isMetaMask, this.isDebug);
   }
