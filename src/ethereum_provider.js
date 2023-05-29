@@ -168,10 +168,6 @@ class TrustWeb3Provider extends BaseProvider {
           return this.sendResponse(payload.id, this.net_version());
         case "eth_chainId":
           return this.sendResponse(payload.id, this.eth_chainId());
-        case "eth_blockNumber":
-          return this.sendResponse(payload.id, this.rpc.getBlockNumber());
-        case "eth_getBlockByNumber":
-          return this.sendResponse(payload.id, this.rpc.getBlockByNumber(payload.params[0]));
         case "eth_sign":
           return this.eth_sign(payload);
         case "personal_sign":
